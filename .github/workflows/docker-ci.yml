@@ -32,9 +32,9 @@ jobs:
       - name: Repo name
         run: |
           if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            echo "BRANCH_NAME=${{ github.head_ref }}" >> $GITHUB_ENV
+            echo "BRANCH_NAME=${{ github.event.pull_request.title }}" >> $GITHUB_ENV
           else
-            echo "BRANCH_NAME=${{ github.event.inputs.branch_name }}" >> $GITHUB_ENV
+            echo "BRANCH_NAME=${{ github.event.inputs.image_name }}" >> $GITHUB_ENV
           fi
 
       - name: Docker build
